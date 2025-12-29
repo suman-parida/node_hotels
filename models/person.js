@@ -1,47 +1,41 @@
 const mongoose = require('mongoose');
 
-//create a schema
-const personSchem = new mongoose.Schema({
+// Create a schema
+const personSchema = new mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true
     },
     age: {
         type: Number,
-        require: true
-
-
+        required: true
     },
     work: {
         type: String,
         enum: ['Chef', 'waiter', 'manager'],
-        require: true
+        required: true
     },
     mobile: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true,
-
+        required: true,
+        unique: true
     },
     address: {
         type: String,
-        require: true
+        required: true
     },
     salary: {
-        type: String,
-        require: true
-    },
+        type: Number,
+        required: true
+    }
+}, {
+    timestamps: true // Adds createdAt and updatedAt fields
+});
 
-
-
-
-
-})
-
-//create a model
-
-const Person = mongoose.model('Person', personSchem);
+// Create a model
+const Person = mongoose.model('Person', personSchema);
 module.exports = Person;

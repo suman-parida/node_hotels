@@ -1,28 +1,28 @@
 const express = require('express');
 const app = express();
-require('./db'); // Just require it
+require('dotenv').config();
 
-app.use(express.json()); // Instead of body-parser
+// Import database connection
+require('./db');
 
+// Middleware
+app.use(express.json()); // Parse JSON bodies
+
+// Import models
 const Person = require('./models/person');
-const { json } = require('body-parser');
 
+// Basic route
 app.get('/', (req, res) => {
-    res.send('Welcome to my home');
+    res.send('Welcome to my hotel management system');
 });
 
-
-
-
-
-
-
-
-//import the file
-const personRoutes = require('./routes/personRoutes')
-    // use the router
+// Import and use person routes
+const personRoutes = require('./routes/personRoutes');
 app.use('/person', personRoutes);
 
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
+// Get port from environment or default to 3000
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
