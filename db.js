@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+
+
 // MongoDB connection - you can switch between local and Atlas
-const useLocal = true; // Set to false to use MongoDB Atlas
+const useLocal = false; // Set to false to use MongoDB Atlas
 
 let mongoURL;
 if (useLocal) {
